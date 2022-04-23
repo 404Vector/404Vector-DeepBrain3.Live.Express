@@ -32,7 +32,7 @@ app.post('/login', cors(corsOptions), (req, res) => {
     UserService().login(req, res)
 })
 
-app.post('/logout', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.post('/logout', cors(corsOptions), (req, res) => {
     console.log(' ### 5. 라우터 진입 ### ')
     UserService().logout(req, res)
 })
