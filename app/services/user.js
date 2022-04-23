@@ -78,12 +78,23 @@ export default function UserService(){
                     }
                 })
         },
-        getUserById(userid){
+        getUserById(req, res){
+            const userid = req.body.userid
             User
                 .findById({userid: userid})
                 .exec((_err, user) => {
-                    return user
+                    res.status(200).json(user)
                 })
+        },
+        //req 안쓰면 _req로 표기
+        getUsers(_req, res){
+            User.find().exec(
+                (err, users)=>{
+                    res.status(200).json(users)
+                    return;
+                }
+            )
         }
+        
     }
 }

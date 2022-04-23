@@ -21,18 +21,25 @@ app.use(function (_req, res, next) {
     );
     next();
 });
+
 app.post('/join', cors(corsOptions), (req, res) => {
     console.log(' ### 5. 라우터 진입 ### ')
     UserService().join(req, res)
 })
+
 app.post('/login', cors(corsOptions), (req, res) => {
     console.log(' ### 5. 라우터 진입 ### ')
     UserService().login(req, res)
 })
+
 app.post('/logout', passport.authenticate('jwt', {session: false}), (req, res) => {
     console.log(' ### 5. 라우터 진입 ### ')
-
     UserService().logout(req, res)
+})
+
+app.post('/getUsers', cors(corsOptions), (req, res) => {
+    console.log(' ### getUsers ### ')
+    UserService().getUsers(req, res)
 })
 
 export default app
