@@ -12,7 +12,8 @@ export default function UserModel(mongoose) {
         name: String,
         phone: String,
         birth: String,
-        address: String
+        address: String,
+        token: String
     })
     userSchema.methods.comparePassword = function (plainPassword, cb) {
         //cb는 (err,isMatch)이다. plainPassword 유저가 입력한 password
@@ -66,5 +67,6 @@ export default function UserModel(mongoose) {
             })
         })
     }
+    return mongoose.model('User', userSchema)
 
 }

@@ -19,7 +19,7 @@ async function startServer() {
     app.use(express.json());
     const _passport = applyPassport(passport, jwtSecret);
     app.use(_passport.initialize());
-    app.use("/", index); // 라우터 함수 형태임
+    app.use("/", index);
     app.use("/api", api);
     app.use("/basic", basic);
     app.use("/user", user);
@@ -38,16 +38,6 @@ async function startServer() {
             process.exit();
         });
 
-        //미들웨어 포맷, next는 생략가능, req는 무조건 _req로 써야함, 버그있음, 사용 안해도 생략 하면 안됨
-        /* 
-            app.all("*", function (_req, res, next) {
-                res.header(
-                    "access-controll-allow-headers",
-                    "x-access-token, origin, content-type, accept"
-                )
-                next()
-            });
-        */
     app.all("*", function (_req, res) {
         return getResponse.notFoundResponse(res, "페이지를 찾을 수 없습니다");
     });
