@@ -55,8 +55,8 @@ export default function UserService(){
                 }
             })
             
-        },
-        logout(req, res){
+        },// login 
+        logout(){
             req.logout()
             res.json({msg: 'LOGOUT'})
         },
@@ -86,15 +86,15 @@ export default function UserService(){
                     res.status(200).json(user)
                 })
         },
-        //req 안쓰면 _req로 표기
         getUsers(_req, res){
             User.find().exec(
-                (err, users)=>{
+                (err,users)=>{
                     res.status(200).json(users)
-                    return;
                 }
             )
         }
         
+        
+
     }
 }
